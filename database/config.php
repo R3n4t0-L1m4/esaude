@@ -1,6 +1,6 @@
 <?php
 define ('HOST','localhost');
 define ('USER','root');
-define ('PASS', '');
-define ('BASE', 'esaude');
+define ('PASS', 'lima123');
+define ('BASE', 'postodb');
  ?>

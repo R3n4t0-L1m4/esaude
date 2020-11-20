@@ -10,11 +10,10 @@ if(count($_GET)){
     if($nome){
         $sql = "SELECT b.* FROM medicamento a
         LEFT JOIN disponivel c
-        ON c.id_medicamento = a.id
+        ON c.medicamento_id = a.id_medicamento
         LEFT JOIN posto b
-        ON b.id = c.id_posto
-        WHERE a.nome = :nome";
-
+        ON b.id_posto = c.posto_id
+        WHERE a.nome_medicamento LIKE :nome";
         $nome = '%'.$nome.'%';
         $stmt = Connection::prepare($sql);
         $stmt->bindParam(':nome', $nome);
