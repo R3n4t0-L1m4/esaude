@@ -2,8 +2,8 @@
 header('Content-Type: application/json');
 require_once '../database/Connection.class.php';
 if(count($_POST)){
-    $nome = isset($_GET['nome_posto']) ? $_GET['nome_posto'] : null;
-    $endereco = isset($_GET['endereco_posto']) ? $_GET['endereco_posto'] : null;
+    $nome = isset($_POST['nome_posto']) ? $_POST['nome_posto'] : null;
+    $endereco = isset($_POST['endereco_posto']) ? $_POST['endereco_posto'] : null;
 
     if($nome && $endereco){
         $sql = "INSERT INTO posto (nome_posto, endereco_posto) VALUES (:nome, :endereco)";
