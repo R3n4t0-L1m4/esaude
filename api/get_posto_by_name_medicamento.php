@@ -7,18 +7,21 @@ $o->data = [];
 
 if(count($_GET)){
     $nome = isset($_GET['nome']) ? $_GET['nome'] : null;
-    if($nome){        
-        $sql = "SELECT * FROM medicamento WHERE a. = :id";
+    if($nome){
+        $sql = "SELECT b.* FROM medicamento a
+        LEFT JOIN disponivel c
+        ON c.id_medicamento = a.id
+        LEFT JOIN posto b
+        ON b.id = c.id_posto
+        WHERE a.nome = :nome";
+
+        $nome = '%'.$nome.'%';
         $stmt = Connection::prepare($sql);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':nome', $nome);
         $stmt->execute();
-        $o->data = $stmt->fetch();
+        $o->data = $stmt->fetchAll();
     }
-
-}else{
-    $o->data = Connection::query("SELECT * FROM medicamento")->fetchAll();
 }
-
 echo json_encode($o); return;
 
 
